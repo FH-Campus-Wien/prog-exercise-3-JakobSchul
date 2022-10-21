@@ -1,7 +1,5 @@
 package at.ac.fhcampuswien;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -147,11 +145,7 @@ public class App {
 
 
     public static void main(String[] args) {
-        //  App.oneMonthCalendar(30, 6);
-        //  App.guessingGame(randomNumberBetweenOneAndHundred());
 
-        //  System.out.println(camelCase("aaAABB  AAaabb"));
-        System.out.println(checkDigit(new int[]{3, 9, 1, 5, 8}));
 
 
     }
