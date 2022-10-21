@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien;
 
 
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -71,7 +72,7 @@ public class App {
 
     }
 
-    public static boolean swapArrays(int @NotNull [] a, int[] b) {
+    public static boolean swapArrays(int [] a, int[] b) {
 
         if (a.length != b.length) return false;
 
@@ -114,7 +115,7 @@ public class App {
         return checkDigit;
     }
 
-    @Contract("_ -> param1")
+
 
     public static int randomNumberBetweenOneAndHundred() {
 
@@ -145,6 +146,10 @@ public class App {
 
 
     public static void main(String[] args) {
+         App.oneMonthCalendar(30, 6);
+         App.guessingGame(randomNumberBetweenOneAndHundred());
+
+
 
 
 
