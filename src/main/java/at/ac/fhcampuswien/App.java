@@ -1,5 +1,8 @@
 package at.ac.fhcampuswien;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,7 +13,6 @@ public class App {
     public static void oneMonthCalendar(int numberDay, int startingDay) {
         int reihe = 0;
         int horizontal = 0;
-
         for (int j = 1; j <= 7; j++) {   // as long as there are under oder even 7 rows loop this:
             if (j == startingDay) {
                 for (int i = 1; i <= numberDay; i++) {
@@ -20,14 +22,11 @@ public class App {
                         System.out.print(i + " ");
                     }
                     horizontal++;
-                    if (horizontal % 7 == 0 && i != numberDay) { // this regulates Zeilenumbruch every 7 numbers
-
-                        if (reihe < 4) { // stop if reihe over 4
-
-                            System.out.println("");
-
-                        }
-
+                    if (horizontal % 7 == 0) { // this regulates Zeilenumbruch every 7 numbers
+                        // && i != numberDay
+                        // if (reihe < 4) { // stop if reihe over 4
+                        System.out.println("");
+                        //  }
                         reihe++;
                     }
                 }
@@ -35,15 +34,23 @@ public class App {
                 System.out.print("   ");
                 horizontal++;
             }
-            if (numberDay <= 2) { // if numberDay is too small to use big " "
+            if (numberDay <= 2) { // if numberDay is too small to use big " " or doesnt need it
                 System.out.print("");
             }
         }
+        if (numberDay == 28) {
+            System.out.println("");
+        }
+        //Curve fitting
     }
 
 
     public static void guessingGame(int numbertoguess) {
         Scanner scanner = new Scanner(System.in);
+
+        //           for(int i =0;i <=20;i++) {
+        //                System.out.println(numbertoguess);  // 0 to 100
+        //             }
 
 
         for (int i = 1; i <= 10; i++) {
@@ -62,47 +69,101 @@ public class App {
 
             }
 
-
         }
-
 
     }
 
+    public static boolean swapArrays(int @NotNull [] a, int[] b) {
+
+        if (a.length != b.length) return false;
+
+        for (int i = 0; i < a.length; i = i + 1) {
+            //add [i]b and [i]a and extract
+
+            b[i] = b[i] + a[i];
+            a[i] = b[i] - a[i];
+
+            b[i] = b[i] - a[i];
+        }
+        //why do i need this? Curve fitting?
+
+        return true;
+    }
+
+    public static int checkDigit(int[] digit) {
+        int läng = digit.length;
+
+
+        int zif = 0;
+        int tmp = 0;
+        int sum = 0;
+        for (int i = 0; i < läng; i++) { //list array
+            zif = digit[i]; //take value
+            tmp = i + 2; //array place +2
+
+            sum = sum + (zif *tmp);
+            System.out.println(sum);
+
+
+        }
+        int sum2 = sum % 11;
+       int rest = sum % 11;
+        int checkDigit = 11 - rest;
+        System.out.println(checkDigit);
+        if (checkDigit == 10) return 0;
+        if (checkDigit == 11) return 5;
+
+        return checkDigit;
+    }
+
+    @Contract("_ -> param1")
 
     public static int randomNumberBetweenOneAndHundred() {
 
-int number;
+        int number; // must not be initialiced with "0" ((might only be relevant with old "solution"))
         Random random = new Random();
 
-        number = random.nextInt(100);
-
-        if (number <= 1) {
-            number = random.nextInt();
-        }
-        if (number >= 100) {
-            number = random.nextInt();
-        }
-
-        return number;
-
-
-
+        return random.nextInt(100) + 1;
     }
 
 
-    //public static int randomNumberBetweenOneAndHundred(){
 
+    public static long[] lcg(long start) {
 
-    //nächste Zeitle = Direktes Zitat aus https://www.w3schools.com/java/java_math.asp (zuletzt aufgerufen 20.10.2022
+        long[] lcg = new long[10];
+        long m = 0;
+        m = (long) Math.pow(2, 31);
+        long a = 1103515245;
+        long c = 12345;
+
+        // ""lcg[i]"" == i prints number from array
+        for (int i = 0; i < lcg.length; i++) {
+            lcg[i] = (a * start + c) % m;
+            start = lcg[i];
+        }
+
+        return lcg;
+    }
 
 
     public static void main(String[] args) {
-        App.oneMonthCalendar(30, 6);
-        App.guessingGame(randomNumberBetweenOneAndHundred());
+        //  App.oneMonthCalendar(30, 6);
+        //  App.guessingGame(randomNumberBetweenOneAndHundred());
+
+        //  System.out.println(camelCase("aaAABB  AAaabb"));
+        System.out.println(checkDigit(new int[]{3, 9, 1, 5, 8}));
 
 
     }
 }
 
+
+// Implement all methods as public static
+
+
+// test your method implementations here
+// make method calls
+// print their results
+// etc.
 
 
