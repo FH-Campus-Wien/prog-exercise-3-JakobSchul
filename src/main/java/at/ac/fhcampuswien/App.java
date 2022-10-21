@@ -114,7 +114,41 @@ public class App {
 
         return checkDigit;
     }
+ public static String camelCase(String s) {
 
+
+        String satz = "";
+        char[] chars = s.toCharArray();
+        boolean klein;
+        char c;
+
+        boolean groß;
+        boolean space;
+        for (int i = 0; i < chars.length; i++) {
+            c = chars[i];
+
+            groß = c > 64 && c < 91;
+            klein = c > 96 && c < 123;
+
+            if (i == 0) {
+                if (groß)
+                    satz += c;
+                if (klein)
+                    satz += (char) (c - 32);
+            } else {
+                space = chars[i - 1] == 32;
+                if (space) {
+                    if (groß) satz += c;
+                    if (klein) satz += (char) (c - 32);
+                } else {
+                    if (groß) satz += (char) (c + 32);
+                    if (klein) satz += c;
+                }
+            }
+        }
+
+        return satz;
+    }
 
 
     public static int randomNumberBetweenOneAndHundred() {
